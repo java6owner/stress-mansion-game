@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Stress Break Room</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game-canvas"></canvas>
+
+      <div id="hud" class="hud">
+        <div class="stats">
+          <div><span data-label="score">Score</span> <strong id="score-value">0</strong></div>
+          <div><span data-label="money">Money</span> <strong id="money-value">0</strong></div>
+          <div><span data-label="weapon">Weapon</span> <strong id="weapon-value">Fist</strong></div>
+        </div>
+
+        <div id="crosshair" class="crosshair" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </div>
+
+        <aside class="shop" aria-label="Weapon shop">
+          <h2 id="shop-title">Shop</h2>
+          <p class="shop-hint">T: chat, B / Tab: cursor, E: door, Right click: grab / throw, 1-7: buy or equip</p>
+          <div id="shop-list" class="shop-list"></div>
+        </aside>
+
+        <div id="start-panel" class="start-panel">
+          <h1 id="game-title">Stress Break Room</h1>
+          <p id="game-copy">Break every object in the room and refill it.</p>
+          <button id="start-button" type="button">Start</button>
+        </div>
+
+        <button id="respawn-button" class="respawn-button hidden" type="button" hidden>
+          Respawn
+        </button>
+
+        <div class="mobile-controls" aria-label="Mobile controls">
+          <div class="move-pad">
+            <button data-mobile="forward" type="button" aria-label="Forward">W</button>
+            <button data-mobile="left" type="button" aria-label="Left">A</button>
+            <button data-mobile="backward" type="button" aria-label="Backward">S</button>
+            <button data-mobile="right" type="button" aria-label="Right">D</button>
+          </div>
+          <button id="mobile-attack" class="attack-button" type="button">Attack</button>
+        </div>
+
+        <div id="load-error" class="load-error hidden">
+          Run this project with npm install and npm run dev.
+        </div>
+
+        <input
+          id="cheat-chat"
+          class="cheat-chat hidden"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="command"
+        />
+      </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+    <script>
+      window.setTimeout(function () {
+        if (!window.__stressGameLoaded) {
+          var error = document.querySelector("#load-error");
+          if (error) error.classList.remove("hidden");
+        }
+      }, 900);
+    </script>
+  </body>
+</html>
